@@ -17,7 +17,8 @@ io.on('connection', function (socket){
 	//recieve/listen to a message on server from client
 	socket.on('message', function(message){
 		console.log('New message from client ' + message.text);
-		socket.broadcast.emit('message', message); //send/broadcast the message from the sender to other clients
+		//socket.broadcast.emit('message', message); //send/broadcast the message from the sender to other clients not showing senders message
+		io.emit('message', message);
 	});
 
 });
