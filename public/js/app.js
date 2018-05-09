@@ -10,7 +10,15 @@ socket.on('message', function (message){
 	console.log(message.text);
 });
 
-// //send a message to the server
-// socket.emit('message', {
-// 		text: 'Hello! I am a client user'
-// });
+// handles submitting a new message
+
+var $form = jQuery('#message-form');
+
+$form.on('submit', function(event){
+	event.preventDefault();
+	var $message = $form.find('input[name=message]');
+	socket.emit('message', {
+		text: $message.val()
+	});
+	$message.val('');
+});
